@@ -52,8 +52,6 @@ public class Shadow : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
     public void AttemptCapture()
     {
         Collider2D[] shadowsWithinRange = Physics2D.OverlapCircleAll(transform.position, radius, shadowMask);
@@ -72,10 +70,9 @@ public class Shadow : MonoBehaviour
     private void Capture(Vector3 position)
     {
         mySpriteRenderer.sprite = realWorldSprite;
+        mySpriteRenderer.enabled = true;
         transform.position = position;
         captured = true;
-        //Destroy(this);
-
     }
 
     public void SetShadowSprite(Sprite setter)
