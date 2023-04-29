@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shadow : MonoBehaviour
 {
     SpriteRenderer mySpriteRenderer;
-
+    GameManager gameManager;
     PlayerMovement player;
 
     [SerializeField] public Sprite realWorldSprite;
@@ -25,6 +25,7 @@ public class Shadow : MonoBehaviour
     {
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         player = FindObjectOfType<PlayerMovement>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -57,7 +58,6 @@ public class Shadow : MonoBehaviour
             // and...
             if (isWithinCapRange)
             {
-                Debug.Log("Captured?");
                 Capture(goalPos);
             }
         }
@@ -70,6 +70,8 @@ public class Shadow : MonoBehaviour
         transform.position = position;
         captured = true;
 
+        gameManager.UpdateCapturedGhosts(1);
+
         // DANIEL: Potentially a sound effect for restoring a shadow here?
     }
 
@@ -79,9 +81,9 @@ public class Shadow : MonoBehaviour
         {
             if (shadowsWithinRange.Length != 0)
             {
-                Debug.Log("shadow isWithinCapRange turned on");
                 foreach (Collider2D shadowWithinRange in shadowsWithinRange)
                 {
+                    Debug.Log("we found a ghost?");
                     var instance = shadowWithinRange.GetComponent<Shadow>();
                     instance.isWithinCapRange = true;
                 }
