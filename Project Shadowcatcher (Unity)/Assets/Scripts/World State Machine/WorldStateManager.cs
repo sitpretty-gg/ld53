@@ -44,6 +44,7 @@ public class WorldStateManager : MonoBehaviour
     {
         foreach (Shadow shadow in shadows)
         {
+            // only change the shadows that haven't been caught
             if (!shadow.captured)
             {
                 if (currentState == shadowWorldState)
@@ -61,11 +62,12 @@ public class WorldStateManager : MonoBehaviour
         }
     }
 
-    public void SetAllShadowsWithinRange(bool setter)
+    // After we come back into the real world, we turn isWithinCapRange off again
+    public void ResetAllWithinCapRange()
     {
         foreach (Shadow shadow in shadows)
         {
-            shadow.isWithinCapRange = setter;
+            shadow.isWithinCapRange = false;
         }
     }
 

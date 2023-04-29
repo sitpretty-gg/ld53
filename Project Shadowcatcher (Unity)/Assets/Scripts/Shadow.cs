@@ -6,6 +6,8 @@ public class Shadow : MonoBehaviour
 {
     SpriteRenderer mySpriteRenderer;
 
+    PlayerMovement player;
+
     [SerializeField] public Sprite realWorldSprite;
     [SerializeField] public Sprite shadowWorldSprite;
 
@@ -22,11 +24,13 @@ public class Shadow : MonoBehaviour
     private void Start()
     {
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        player = FindObjectOfType<PlayerMovement>();
     }
 
     void Update()
     {
         var interval = speed * Time.deltaTime;
+
         if (captured != true)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPos, interval);
@@ -46,9 +50,16 @@ public class Shadow : MonoBehaviour
         roundedPosition.x = Mathf.RoundToInt(transform.position.x);
         roundedPosition.y = Mathf.RoundToInt(transform.position.y);
 
-        if ((roundedPosition == goalPos) && (isWithinCapRange = true))
+        //if ((roundedPosition == goalPos) && (isWithinCapRange = true))
+
+        if (roundedPosition == goalPos)
         {
-            Capture(goalPos);
+            // and...
+            if (isWithinCapRange)
+            {
+                Debug.Log("Captured?");
+                Capture(goalPos);
+            }
         }
     }
 
@@ -64,10 +75,11 @@ public class Shadow : MonoBehaviour
 
     public void CheckWithinCapRange()
     {
-        Collider2D[] shadowsWithinRange = Physics2D.OverlapCircleAll(transform.position, radius, shadowMask);
+        Collider2D[] shadowsWithinRange = Physics2D.OverlapCircleAll(player.transform.position, radius, shadowMask);
         {
             if (shadowsWithinRange.Length != 0)
             {
+                Debug.Log("shadow isWithinCapRange turned on");
                 foreach (Collider2D shadowWithinRange in shadowsWithinRange)
                 {
                     var instance = shadowWithinRange.GetComponent<Shadow>();

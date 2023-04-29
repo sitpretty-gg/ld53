@@ -8,6 +8,6 @@ public class RealWorldState : WorldBlankState
     {
         context.shadowWorldPostProcessing.SetActive(false);
         context.ShadowsVisible(false);
-        context.SetAllShadowsWithinRange(false);
+        context.ResetAllWithinCapRange();
     }
 }
