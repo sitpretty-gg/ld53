@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour
     void OnViewShadowRealm(InputValue input)
     {
         worldStateManager.SwitchState(worldStateManager.shadowWorldState);
-        shadow.AttemptCapture();
+        shadow.CheckWithinCapRange();
     }
 
     void OnTestSlider(InputValue input)

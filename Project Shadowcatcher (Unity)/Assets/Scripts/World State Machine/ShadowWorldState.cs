@@ -9,5 +9,8 @@ public class ShadowWorldState : WorldBlankState
         context.shadowWorldPostProcessing.SetActive(true);
         context.StartCoroutine(context.ShadowWorldTimer());
         context.ShadowsVisible(true);
+
+        // DANIEL: Switch BGM to Shadow World Variant here
+        // DANIEL: This will also be the moment the firefly buddy uses it's ability 
     }
 }

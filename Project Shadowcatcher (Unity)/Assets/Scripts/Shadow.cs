@@ -52,7 +52,17 @@ public class Shadow : MonoBehaviour
         }
     }
 
-    public void AttemptCapture()
+    private void Capture(Vector3 position)
+    {
+        mySpriteRenderer.sprite = realWorldSprite;
+        mySpriteRenderer.enabled = true;
+        transform.position = position;
+        captured = true;
+
+        // DANIEL: Potentially a sound effect for restoring a shadow here?
+    }
+
+    public void CheckWithinCapRange()
     {
         Collider2D[] shadowsWithinRange = Physics2D.OverlapCircleAll(transform.position, radius, shadowMask);
         {
@@ -65,14 +75,6 @@ public class Shadow : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void Capture(Vector3 position)
-    {
-        mySpriteRenderer.sprite = realWorldSprite;
-        mySpriteRenderer.enabled = true;
-        transform.position = position;
-        captured = true;
     }
 
     public void SetShadowSprite(Sprite setter)

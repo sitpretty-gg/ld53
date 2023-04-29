@@ -37,13 +37,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (input.x != 0 || input.y != 0)
         {
-            SetRunning(true);
+            SetSkating(true);
+            // DANIEL: Movement sounds to trigger here
         }
 
-        else { SetRunning(false); }
+        else
+        {
+            SetSkating(false);
+            // DANIEL: Movement sounds to turn off here
+        }
     }
 
-    void SetRunning(bool setter)
+    void SetSkating(bool setter)
     {
         myAnimator.SetBool("isRunning", setter);
     }
