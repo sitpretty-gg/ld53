@@ -10,12 +10,12 @@ public class WorldStateManager : MonoBehaviour
     public RealWorldState realWorldState = new RealWorldState();
     public ShadowWorldState shadowWorldState = new ShadowWorldState();
 
-    Shadow[] shadows;
+    ShadowStateManager[] shadows;
 
     // Start is called before the first frame update
     void Start()
     {
-        shadows = FindObjectsOfType<Shadow>();
+        shadows = FindObjectsOfType<ShadowStateManager>();
         currentState = realWorldState;
         realWorldState.EnterState(this);
     }
@@ -42,7 +42,7 @@ public class WorldStateManager : MonoBehaviour
 
     public void ShadowsVisible(bool setter)
     {
-        foreach (Shadow shadow in shadows)
+        foreach (ShadowStateManager shadow in shadows)
         {
             // only change the shadows that haven't been caught
             if (!shadow.captured)
@@ -65,7 +65,7 @@ public class WorldStateManager : MonoBehaviour
     // After we come back into the real world, we turn isWithinCapRange off again
     public void ResetAllWithinCapRange()
     {
-        foreach (Shadow shadow in shadows)
+        foreach (ShadowStateManager shadow in shadows)
         {
             shadow.isWithinCapRange = false;
         }

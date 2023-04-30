@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     WorldStateManager worldStateManager;
-    Shadow shadow;
+    [SerializeField] ShadowStateManager [] shadows;
     PlayerMovement playerMovement;
     CanvasManager canvasManager;
     private FXManager fxManager;
@@ -15,7 +15,6 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
-        shadow = FindObjectOfType<Shadow>();
         canvasManager = FindObjectOfType<CanvasManager>();
         worldStateManager = FindObjectOfType<WorldStateManager>();
         fxManager = FindObjectOfType<FXManager>();
@@ -29,7 +28,7 @@ public class InputManager : MonoBehaviour
     void OnViewShadowRealm(InputValue input)
     {
         worldStateManager.SwitchState(worldStateManager.shadowWorldState);
-        shadow.CheckWithinCapRange();
+        StartCoroutine(LoopCheckCapRange());
         fxManager.ShadowSightON();
     }
 
@@ -49,5 +48,19 @@ public class InputManager : MonoBehaviour
             canvasManager.UpdateTMPro();
         }
        
+    }
+
+    // Incase the shadow enters the light after initial check...
+    IEnumerator LoopCheckCapRange()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            foreach (ShadowStateManager shadow in shadows)
+            {
+                shadow.CheckWithinCapRange();
+            }
+
+            yield return new WaitForSecondsRealtime(0.25f);
+        }
     }
 }
