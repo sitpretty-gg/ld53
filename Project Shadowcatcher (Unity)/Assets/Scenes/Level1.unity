@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 75505973}
   - component: {fileID: 75505972}
+  - component: {fileID: 75505975}
+  - component: {fileID: 75505974}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -169,6 +171,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &75505974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75505971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d2518362a4d004a9db1b65ca6ef9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &75505975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75505971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55abccddac56404297b41e1f097f7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skate:
+  - {fileID: 8300000, guid: 0aef5016f27a03c448dabb28e9b3b353, type: 3}
 --- !u!1 &218400404
 GameObject:
   m_ObjectHideFlags: 0
