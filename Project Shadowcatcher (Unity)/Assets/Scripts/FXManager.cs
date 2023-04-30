@@ -10,6 +10,12 @@ public class FXManager : MonoBehaviour
     public AudioClip shadowSightOn;
     public AudioClip shadowSightOff;
     public AudioClip shadowAttach;
+    public AudioClip shadowMoveUnder;
+    public AudioClip shadowMoveOver;
+    public AudioClip batteryDrain;
+
+
+
 
     private void Awake()
     {
@@ -75,20 +81,40 @@ public class FXManager : MonoBehaviour
     {
         audioSource.clip = shadowSightOn;
         audioSource.Play();
-        Debug.Log("ShadowON");
+        //Debug.Log("ShadowON");
     }
 
     public void ShadowSightOFF()
     {
         audioSource.clip = shadowSightOff;
         audioSource.Play();
-        Debug.Log("ShadowOFF");
+        //Debug.Log("ShadowOFF");
     }
     public void ShadowAttach()
     {
         audioSource.clip = shadowAttach;
         audioSource.Play();
-        Debug.Log("ShadowAttach");
+        //Debug.Log("ShadowAttach");
+    }
+        
+    public void ShadowOver()
+    {
+        audioSource.clip = shadowMoveUnder;
+        audioSource.Play();
+        //Debug.Log("ShadowOver");
     }
 
+    public void ShadowUnder()
+    {
+        audioSource.clip = shadowMoveOver;
+        audioSource.Play();
+        //Debug.Log("ShadowUnder");
+    }
+
+    public void BatteryDraining()
+    {
+        audioSource.clip = batteryDrain;
+        audioSource.Play();
+        //Debug.Log("batteryDrain");
+    }
 }
