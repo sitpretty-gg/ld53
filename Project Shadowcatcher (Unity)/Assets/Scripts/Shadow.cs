@@ -7,6 +7,8 @@ public class Shadow : MonoBehaviour
     SpriteRenderer mySpriteRenderer;
     GameManager gameManager;
     PlayerMovement player;
+    FXManager fxManager;
+    
 
     [SerializeField] public Sprite realWorldSprite;
     [SerializeField] public Sprite shadowWorldSprite;
@@ -26,6 +28,7 @@ public class Shadow : MonoBehaviour
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         player = FindObjectOfType<PlayerMovement>();
         gameManager = FindObjectOfType<GameManager>();
+        fxManager = FindObjectOfType<FXManager>();
     }
 
     void Update()
@@ -73,6 +76,8 @@ public class Shadow : MonoBehaviour
         gameManager.UpdateCapturedGhosts(1);
 
         // DANIEL: Potentially a sound effect for restoring a shadow here?
+        fxManager.ShadowAttach();
+
     }
 
     public void CheckWithinCapRange()

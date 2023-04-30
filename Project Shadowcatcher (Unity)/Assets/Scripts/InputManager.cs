@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
     Shadow shadow;
     PlayerMovement playerMovement;
     CanvasManager canvasManager;
+    private FXManager fxManager;
+    
 
     private void Start()
     {
@@ -16,6 +18,7 @@ public class InputManager : MonoBehaviour
         shadow = FindObjectOfType<Shadow>();
         canvasManager = FindObjectOfType<CanvasManager>();
         worldStateManager = FindObjectOfType<WorldStateManager>();
+        fxManager = FindObjectOfType<FXManager>();
     }
 
     void OnMove(InputValue input)
@@ -27,6 +30,7 @@ public class InputManager : MonoBehaviour
     {
         worldStateManager.SwitchState(worldStateManager.shadowWorldState);
         shadow.CheckWithinCapRange();
+        fxManager.ShadowSightON();
     }
 
     void OnTestSlider(InputValue input)
@@ -44,5 +48,6 @@ public class InputManager : MonoBehaviour
         {
             canvasManager.UpdateTMPro();
         }
+       
     }
 }

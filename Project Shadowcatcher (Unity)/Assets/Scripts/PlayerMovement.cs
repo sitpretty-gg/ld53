@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
     Animator myAnimator;
+    private FXManager fxManager;
+    private AudioSource audioSource;
+    public AudioClip currentClip;
 
     Vector2 input = new Vector2();
     [SerializeField] float moveSpeed;
@@ -15,12 +18,15 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myAnimator = GetComponent<Animator>();
+        fxManager = FindObjectOfType<FXManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        
     }
 
     public void Move()
@@ -39,12 +45,17 @@ public class PlayerMovement : MonoBehaviour
         {
             SetSkating(true);
             // DANIEL: Movement sounds to trigger here
+            fxManager.PlaySkate();
+            Debug.Log("SkateSoundfromPlayerMovement");
         }
 
         else
         {
             SetSkating(false);
             // DANIEL: Movement sounds to turn off here
+            fxManager.StopSkate();
+            Debug.Log("stopSkateSound");
+            
         }
     }
 

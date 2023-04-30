@@ -6,8 +6,10 @@ public class FXManager : MonoBehaviour
 {
     public static FXManager instance;
     private AudioSource audioSource;
-    public AudioClip[] Skate;
-
+    public AudioClip skate1;
+    public AudioClip shadowSightOn;
+    public AudioClip shadowSightOff;
+    public AudioClip shadowAttach;
 
     private void Awake()
     {
@@ -27,22 +29,66 @@ public class FXManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    //Get Clips
+                    AudioClip GetRandomClip(AudioClip[] audioClips)
     {
-        
+        int randomIndex = Random.Range(0, audioClips.Length);
+        AudioClip audioClip = audioClips[randomIndex];
+        return audioClip;
+    }
+    //audio utilites
+                    private void VaryAudio()
+    {
+
+    }
+                    IEnumerator WaitUntilClipEnd()
+    {
+        audioSource.loop = false;
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+
+        // The audio clip has finished playing, now it can be stopped.
+        audioSource.clip = null;
+        audioSource.Stop();
     }
 
-    private void VaryAudio()
-    {
-
-    }
+    //launch and stop of FX
     public void PlaySkate()
     {
+      audioSource.clip = skate1;
+      audioSource.loop = true;
+      audioSource.Play();
+      Debug.Log("Skate.Audio");
+    }
+
+         public void StopSkate()
+    {
+       audioSource.clip = skate1;
+       StartCoroutine(WaitUntilClipEnd());
+       audioSource.Stop();
 
     }
-    public void PlayShadowSightOn()
+
+    public void ShadowSightON()
     {
-       
+        audioSource.clip = shadowSightOn;
+        audioSource.Play();
+        Debug.Log("ShadowON");
     }
+
+    public void ShadowSightOFF()
+    {
+        audioSource.clip = shadowSightOff;
+        audioSource.Play();
+        Debug.Log("ShadowOFF");
+    }
+    public void ShadowAttach()
+    {
+        audioSource.clip = shadowAttach;
+        audioSource.Play();
+        Debug.Log("ShadowAttach");
+    }
+
 }
