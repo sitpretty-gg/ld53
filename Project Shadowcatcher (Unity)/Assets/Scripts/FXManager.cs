@@ -95,7 +95,6 @@ public class FXManager : MonoBehaviour
         audioSource.clip = shadowAttach;
         audioSource.Play();
         //Debug.Log("ShadowAttach");
-<<<<<<< Updated upstream
     }
         
     public void ShadowOver()
@@ -103,8 +102,6 @@ public class FXManager : MonoBehaviour
         audioSource.clip = shadowMoveUnder;
         audioSource.Play();
         //Debug.Log("ShadowOver");
-=======
->>>>>>> Stashed changes
     }
 
     public void ShadowUnder()
