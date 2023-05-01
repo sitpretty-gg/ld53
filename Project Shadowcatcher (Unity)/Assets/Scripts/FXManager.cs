@@ -1,25 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FXManager : MonoBehaviour
 {
     public static FXManager instance;
-    private AudioSource audioSource;
+        
+    private AudioSource audioSource
+        ;
+   
+
+    public AudioMixerGroup Footsteps;
     public AudioClip skate1;
+        
+    public AudioMixer ShadowSight;
     public AudioClip shadowSightOn;
     public AudioClip shadowSightOff;
+
+    public AudioMixerGroup Shadow;
     public AudioClip shadowAttach;
     public AudioClip shadowMoveUnder;
     public AudioClip shadowMoveOver;
+    
+    public AudioMixerGroup Clock;
     public AudioClip batteryDrain;
-
-
-
+    public AudioClip clockTick;
+    public AudioClip clockTickBell;
+          
 
     private void Awake()
     {
-        if (instance == null)
+       if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -32,22 +44,20 @@ public class FXManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+       audioSource = GetComponent<AudioSource>();
     }
 
     //Get Clips
-                    AudioClip GetRandomClip(AudioClip[] audioClips)
+    AudioClip GetRandomClip(AudioClip[] audioClips)
     {
         int randomIndex = Random.Range(0, audioClips.Length);
         AudioClip audioClip = audioClips[randomIndex];
         return audioClip;
     }
-    //audio utilites
-                    private void VaryAudio()
-    {
 
-    }
-                    IEnumerator WaitUntilClipEnd()
+    //audio utilites
+              
+    IEnumerator WaitUntilClipEnd()
     {
         audioSource.loop = false;
         while (audioSource.isPlaying)
@@ -60,16 +70,20 @@ public class FXManager : MonoBehaviour
         audioSource.Stop();
     }
 
-    //launch and stop of FX
+
+   
+    
     public void PlaySkate()
     {
-      audioSource.clip = skate1;
-      audioSource.loop = true;
-      audioSource.Play();
+        audioSource.clip = skate1;
+        audioSource.loop = true;
+        audioSource.Play();
+        audioSource.outputAudioMixerGroup = Footsteps;
+      
+       
       //Debug.Log("Skate.Audio");
     }
-
-         public void StopSkate()
+        public void StopSkate()
     {
        audioSource.clip = skate1;
        StartCoroutine(WaitUntilClipEnd());
@@ -77,10 +91,13 @@ public class FXManager : MonoBehaviour
 
     }
 
+  
+
     public void ShadowSightON()
     {
         audioSource.clip = shadowSightOn;
         audioSource.Play();
+        audioSource.outputAudioMixerGroup = Shadow;
         //Debug.Log("ShadowON");
     }
 
@@ -90,31 +107,50 @@ public class FXManager : MonoBehaviour
         audioSource.Play();
         //Debug.Log("ShadowOFF");
     }
-    public void ShadowAttach()
+    public void PlayShadowAttach()
     {
         audioSource.clip = shadowAttach;
         audioSource.Play();
-        //Debug.Log("ShadowAttach");
+        Debug.Log("AShadowAttaches");
     }
         
-    public void ShadowOver()
+    public void PlayShadowOver()
     {
         audioSource.clip = shadowMoveUnder;
         audioSource.Play();
         //Debug.Log("ShadowOver");
     }
 
-    public void ShadowUnder()
+    public void PlayShadowUnder()
     {
+        
         audioSource.clip = shadowMoveOver;
         audioSource.Play();
-        //Debug.Log("ShadowUnder");
+        Debug.Log("ShadowUnder");
     }
 
-    public void BatteryDraining()
+    //
+    //FX COMMENTED OUT
+    //
+    public void PlayBatteryDraining()
     {
-        audioSource.clip = batteryDrain;
-        audioSource.Play();
+       // audioSource.clip = batteryDrain;
+       //audioSource.Play();
         //Debug.Log("batteryDrain");
     }
+
+    public void PlayClockTick()
+    {
+        audioSource.clip = clockTick;
+        audioSource.Play();
+        audioSource.outputAudioMixerGroup = Clock;
+    }
+        public void PlayClockTickBell()
+    {
+        audioSource.clip = clockTickBell;
+        audioSource.Play();
+        Debug.Log("DINGDONGMINUTESGONE");
+        audioSource.outputAudioMixerGroup = Clock;
+    }
+
 }

@@ -93,8 +93,7 @@ public class ShadowStateManager : MonoBehaviour
         npcInteract.SetText(npcInteract.shadowText);
 
         // DANIEL: Potentially a sound effect for restoring a shadow here?
-        fxManager.ShadowAttach();
-
+        fxManager.PlayShadowAttach();
     }
 
     public void CheckWithinCapRange()
@@ -110,6 +109,7 @@ public class ShadowStateManager : MonoBehaviour
                 {
                     var instance = shadowWithinRange.GetComponent<ShadowStateManager>();
                     instance.isWithinCapRange = true;
+                    fxManager.PlayShadowAttach();
                 }
             }
         }

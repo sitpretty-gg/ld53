@@ -62,6 +62,7 @@ public class Shadow : MonoBehaviour
             if (isWithinCapRange)
             {
                 Capture(goalPos);
+                
             }
         }
     }
@@ -74,9 +75,10 @@ public class Shadow : MonoBehaviour
         captured = true;
 
         gameManager.UpdateCapturedGhosts(1);
+        fxManager.PlayShadowAttach();
 
         // DANIEL: Potentially a sound effect for restoring a shadow here?
-        fxManager.ShadowAttach();
+
 
     }
 

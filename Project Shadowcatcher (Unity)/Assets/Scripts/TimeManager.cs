@@ -12,10 +12,12 @@ public class TimeManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI hoursTimeUI;
 
     GameManager gameManager;
+    FXManager fxManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        fxManager = FindObjectOfType<FXManager>();
         gameManager = FindObjectOfType<GameManager>();
         StartCoroutine(StartTimer());
     }
@@ -30,6 +32,7 @@ public class TimeManager : MonoBehaviour
             if (seconds >= 60)
             {
                 // DANIEL: Hour clock time trigger here
+                fxManager.PlayClockTickBell();
 
                 hours++;
                 seconds = 0;

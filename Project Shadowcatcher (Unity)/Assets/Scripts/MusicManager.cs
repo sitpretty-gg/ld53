@@ -6,9 +6,12 @@ public class MusicManager : MonoBehaviour
 {
    
         public static MusicManager instance;
+    LevelManager levelManager;
         private AudioSource audioSource;
-
-
+        public AudioClip menuMusic;
+        public AudioClip overworldMusic;
+        public AudioClip underworldMusic;
+    
         private void Awake()
         {
             if (instance == null)
@@ -26,10 +29,25 @@ public class MusicManager : MonoBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
+      
+    public void PlayMenuMusic()
+    {
+             
+        audioSource.clip = menuMusic;
+        audioSource.playOnAwake = true;
+        
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
+    public void PlayOverworldMusic()
+    {
+        audioSource.clip = overworldMusic;
+        audioSource.Play();
+    }
 
-        }
+    public void PlayUnderworldMusic()
+    {
+        audioSource.clip = underworldMusic;
+        audioSource.Play();
+    }
+
 }
