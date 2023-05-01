@@ -10,5 +10,7 @@ public class RealWorldState : WorldBlankState
 
         context.ShadowsVisible(false);
         context.ResetAllWithinCapRange();
+        context.StopCoroutine(context.CheckForShadows());
+        context.StopCoroutine(context.DrainBattery());
     }
 }

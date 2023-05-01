@@ -29,7 +29,6 @@ public class ShadowStateManager : MonoBehaviour
 
     public ShadowMovement shadowMovement;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -104,7 +103,6 @@ public class ShadowStateManager : MonoBehaviour
         {
             if (shadowsWithinRange.Length != 0)
             {
-                Debug.Log("A SHADOW WAS FOUND");
                 foreach (Collider2D shadowWithinRange in shadowsWithinRange)
                 {
                     var instance = shadowWithinRange.GetComponent<ShadowStateManager>();

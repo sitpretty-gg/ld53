@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,31 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4109782243
+    locked: 0
+  - name: Shadows Not On Buildings
+    uniqueID: 4063046079
+    locked: 0
+  - name: Buildings
+    uniqueID: 4153318665
+    locked: 0
+  - name: BG Neon
+    uniqueID: 2210746163
+    locked: 0
+  - name: Shadows On Buildings
+    uniqueID: 4151371865
+    locked: 0
+  - name: Backpack Lights
+    uniqueID: 272815573
+    locked: 0
+  - name: Characters
+    uniqueID: 2550914259
+    locked: 0
+  - name: FG Neo
+    uniqueID: 4011663741
+    locked: 0
+  - name: Overhang
+    uniqueID: 3951715187
     locked: 0

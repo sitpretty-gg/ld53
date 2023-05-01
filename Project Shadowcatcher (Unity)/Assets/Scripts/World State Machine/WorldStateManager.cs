@@ -6,18 +6,24 @@ public class WorldStateManager : MonoBehaviour
 {
     [SerializeField] public GameObject shadowWorldPostProcessing;
 
+    InputManager inputManager;
+
     WorldBlankState currentState;
     public RealWorldState realWorldState = new RealWorldState();
     public ShadowWorldState shadowWorldState = new ShadowWorldState();
 
     ShadowStateManager[] shadows;
 
+    Battery battery;
+
     // Start is called before the first frame update
     void Start()
     {
+        inputManager = FindObjectOfType<InputManager>();
         shadows = FindObjectsOfType<ShadowStateManager>();
         currentState = realWorldState;
         realWorldState.EnterState(this);
+        battery = FindObjectOfType<Battery>();
     }
 
     // Update is called once per frame
@@ -27,16 +33,32 @@ public class WorldStateManager : MonoBehaviour
     }
 
 
-    public void SwitchState(WorldBlankState newState)
+    public void SwitchState()
     {
-        currentState = newState;
-        newState.EnterState(this);
+
+        if (currentState == shadowWorldState)
+        {
+            var newState = realWorldState;
+            currentState = newState;
+            currentState.EnterState(this);
+        }
+
+        else if (currentState == realWorldState)
+        {
+            var newState = shadowWorldState;
+            currentState = newState;
+            currentState.EnterState(this);
+        }
     }
 
-    public IEnumerator ShadowWorldTimer()
+    public IEnumerator DrainBattery()
     {
-        yield return new WaitForSeconds(2.5f);
-        SwitchState(realWorldState);
+        while (true)
+        {
+            battery.ReduceBatteryLife();
+            yield return new WaitForSeconds(0.01f);
+
+        }
 
     }
 
@@ -60,6 +82,30 @@ public class WorldStateManager : MonoBehaviour
                 shadow.MakeVisible(setter);
             }
         }
+    }
+
+    public IEnumerator CheckForShadows()
+    {
+        while (true)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Debug.Log("shadow found!");
+
+                foreach (ShadowStateManager shadow in shadows)
+                {
+                    shadow.CheckWithinCapRange();
+                }
+
+                if (currentState == realWorldState)
+                {
+                    yield break;
+                }
+
+                yield return new WaitForSecondsRealtime(0.25f);
+            }
+        }
+
     }
 
     // After we come back into the real world, we turn isWithinCapRange off again

@@ -34,16 +34,19 @@ public class GameManager : MonoBehaviour
 
     ShadowStateManager[] shadows;
 
+    Backpack backpack;
+
     // Start is called before the first frame update
     void Start()
     {
         shadows = FindObjectsOfType<ShadowStateManager>();
+        backpack = FindObjectOfType<Backpack>();
     }
 
     public void UpdateCapturedGhosts(int increase)
     {
         capturedGhosts += increase;
-        capturedGhostsUI.text = capturedGhosts.ToString("000");
+        backpack.UpdateCollectedShadows(capturedGhosts);
     }
 
     public void TriggerTimeBasedEvents(int hours, int seconds)
@@ -51,26 +54,31 @@ public class GameManager : MonoBehaviour
 
         if (hours == startHNPC1 && seconds == startMNPC1)
         {
+            Debug.Log("Ninja boy go");
             NPC1.SwitchState(NPC1.movementState);
         }
 
         if (hours == startHNPC2 && seconds == startMNPC2)
         {
+            Debug.Log("Someone fell off the water tower");
             NPC2.SwitchState(NPC2.movementState);
         }
 
         if (hours == startHNPC3 && seconds == startMNPC3)
         {
+            Debug.Log("barber shadow left the balcony");
             NPC3.SwitchState(NPC3.movementState);
         }
 
         if (hours == startHNPC4 && seconds == startMNPC4)
         {
+            Debug.Log("Windmill girl is a go");
             NPC4.SwitchState(NPC4.movementState);
         }
 
-        if (hours == startHNPC5 && seconds == startHNPC5)
+        if (hours == startHNPC5 && seconds == startMNPC5)
         {
+            Debug.Log("Bus boy called");
             NPC5.SwitchState(NPC5.movementState);
         }
     }

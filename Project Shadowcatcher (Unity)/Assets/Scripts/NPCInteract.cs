@@ -8,7 +8,6 @@ public class NPCInteract : MonoBehaviour
     [SerializeField] public string shadowLessText;
     [SerializeField] public string shadowText;
 
-
     [SerializeField] TextMeshPro tMpro;
     [SerializeField] SpriteRenderer bubbleSpriteRenderer;
 

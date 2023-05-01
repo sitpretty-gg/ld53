@@ -8,10 +8,7 @@ public class ShadowMovement : MonoBehaviour
     // WHERE WE HANDLE OUR ROUTES AND OUR MOVEMENT THROUGH THE ROUTES WHEN CALLED
 
     public bool movementAllowed;
-
-
     [SerializeField] AIPath path;
-
     Vector3[] pathPositions;
 
     [SerializeField] float speed;
