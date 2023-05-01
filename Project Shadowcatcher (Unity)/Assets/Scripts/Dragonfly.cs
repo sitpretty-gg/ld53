@@ -19,7 +19,7 @@ public class Dragonfly : MonoBehaviour
 
     Vector3 targetPos;
 
-    float speed = 0.2f;
+    float speed = 1f;
     float interval;
 
     // Start is called before the first frame update

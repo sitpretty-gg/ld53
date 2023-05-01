@@ -75,12 +75,8 @@ public class Shadow : MonoBehaviour
         captured = true;
 
         gameManager.UpdateCapturedGhosts(1);
-<<<<<<< Updated upstream
         fxManager.PlayShadowAttach();
 
-=======
-         
->>>>>>> Stashed changes
         // DANIEL: Potentially a sound effect for restoring a shadow here?
 
 
@@ -92,9 +88,9 @@ public class Shadow : MonoBehaviour
         {
             if (shadowsWithinRange.Length != 0)
             {
-                Debug.Log("we found a ghost?");
                 foreach (Collider2D shadowWithinRange in shadowsWithinRange)
                 {
+                    Debug.Log("we found a ghost?");
                     var instance = shadowWithinRange.GetComponent<Shadow>();
                     instance.isWithinCapRange = true;
                 }

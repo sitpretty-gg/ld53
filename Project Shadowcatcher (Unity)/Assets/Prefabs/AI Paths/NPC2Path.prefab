@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-  - {x: -16.75, y: 7, z: 0}
-  - {x: -16, y: 3, z: 0}
-  - {x: -8, y: 3, z: 0}
+  - {x: -17, y: 7, z: 0}
+  - {x: -17, y: 2, z: 0}
+  - {x: -8, y: 2, z: 0}

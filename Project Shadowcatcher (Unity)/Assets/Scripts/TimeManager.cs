@@ -8,13 +8,11 @@ public class TimeManager : MonoBehaviour
 {
     int hours = 9;
     int seconds = 0;
-    [SerializeField] TextMeshPro secondsTimeUI;
-    [SerializeField] TextMeshPro hoursTimeUI;
+    [SerializeField] TextMeshProUGUI secondsTimeUI;
+    [SerializeField] TextMeshProUGUI hoursTimeUI;
 
     GameManager gameManager;
     FXManager fxManager;
-
-    [SerializeField] float secondsPer15GameMinutes;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,7 @@ public class TimeManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(secondsPer15GameMinutes);
+            yield return new WaitForSecondsRealtime(7.5f);
             seconds += 15;
 
             if (seconds >= 60)
