@@ -7,9 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
 
     Animator myAnimator;
+    Dragonfly dragonfly;
     private FXManager fxManager;
     private AudioSource audioSource;
     public AudioClip currentClip;
+
+    SpriteRenderer spriteRenderer;
 
     Vector2 input = new Vector2();
     [SerializeField] float moveSpeed;
@@ -20,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         fxManager = FindObjectOfType<FXManager>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        dragonfly = GetComponentInChildren<Dragonfly>();
     }
 
     // Update is called once per frame
@@ -46,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
             SetSkating(true);
             // DANIEL: Movement sounds to trigger here
             fxManager.PlaySkate();
-            Debug.Log("SkateSoundfromPlayerMovement");
         }
 
         else
@@ -54,8 +58,37 @@ public class PlayerMovement : MonoBehaviour
             SetSkating(false);
             // DANIEL: Movement sounds to turn off here
             fxManager.StopSkate();
-            Debug.Log("stopSkateSound");
+        }
+
+        if (input.x < 0)
+        {
+            spriteRenderer.flipX = true;
             
+        }
+
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+
+        if (input.x < 0)
+        {
+            dragonfly.SetLocalPosition(dragonfly.eastV3);
+        }
+
+        else if (input.x > 0)
+        {
+            dragonfly.SetLocalPosition(dragonfly.westV3);
+        }
+
+        else if (input.y > 0)
+        {
+            dragonfly.SetLocalPosition(dragonfly.southV3);
+        }
+
+        else if (input.y < 0)
+        {
+            dragonfly.SetLocalPosition(dragonfly.northV3);
         }
     }
 

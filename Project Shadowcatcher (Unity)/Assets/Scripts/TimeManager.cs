@@ -24,13 +24,20 @@ public class TimeManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(15);
+            yield return new WaitForSecondsRealtime(7.5f);
             seconds += 15;
 
             if (seconds >= 60)
             {
+                // DANIEL: Hour clock time trigger here
+
                 hours++;
                 seconds = 0;
+            }
+
+            if (seconds == 30)
+            {
+                // DANIEL: Half hour time here if you wanted to use it
             }
 
             UpdateSecondsUI(seconds);

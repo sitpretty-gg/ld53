@@ -9,6 +9,7 @@ public class ShadowStateManager : MonoBehaviour
     GameManager gameManager;
     PlayerMovement player;
     FXManager fxManager;
+    NPCInteract npcInteract;
 
     [SerializeField] public Sprite realWorldSprite;
     [SerializeField] public Sprite shadowWorldSprite;
@@ -32,6 +33,7 @@ public class ShadowStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        npcInteract = GetComponentInParent<NPCInteract>();
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         shadowMovement = GetComponent<ShadowMovement>();
         // Note for future Goji, this is "InChildren" so we can offset the sprite for
@@ -88,6 +90,7 @@ public class ShadowStateManager : MonoBehaviour
         captured = true;
 
         gameManager.UpdateCapturedGhosts(1);
+        npcInteract.SetText(npcInteract.shadowText);
 
         // DANIEL: Potentially a sound effect for restoring a shadow here?
         fxManager.ShadowAttach();
@@ -102,6 +105,7 @@ public class ShadowStateManager : MonoBehaviour
         {
             if (shadowsWithinRange.Length != 0)
             {
+                Debug.Log("A SHADOW WAS FOUND");
                 foreach (Collider2D shadowWithinRange in shadowsWithinRange)
                 {
                     var instance = shadowWithinRange.GetComponent<ShadowStateManager>();

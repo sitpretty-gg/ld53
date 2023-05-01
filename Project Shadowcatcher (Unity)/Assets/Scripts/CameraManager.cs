@@ -12,6 +12,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] float minY;
     [SerializeField] float maxY;
 
+    public bool lookAroundInputTriggered;
+
+    [SerializeField] int lookAroundPadding;
+
     private void Start()
     {
         target = FindObjectOfType<PlayerMovement>().transform;

@@ -8,15 +8,19 @@ public class InputManager : MonoBehaviour
     WorldStateManager worldStateManager;
     [SerializeField] ShadowStateManager [] shadows;
     PlayerMovement playerMovement;
+    PlayerInteractables playerInteractables;
     CanvasManager canvasManager;
+    CameraManager cameraManager;
     private FXManager fxManager;
     
 
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
+        playerInteractables = FindObjectOfType<PlayerInteractables>();
         canvasManager = FindObjectOfType<CanvasManager>();
         worldStateManager = FindObjectOfType<WorldStateManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
         fxManager = FindObjectOfType<FXManager>();
     }
 
@@ -32,22 +36,30 @@ public class InputManager : MonoBehaviour
         fxManager.ShadowSightON();
     }
 
-    void OnTestSlider(InputValue input)
+    void OnLookAround(InputValue input)
     {
         if (input.isPressed)
         {
+            cameraManager.lookAroundInputTriggered = true;
+            Debug.Log("lookAround called");
+        }
 
-            canvasManager.UpdateSlider(canvasManager.slider.value - 0.1f);
+        else
+        {
+            cameraManager.lookAroundInputTriggered = false;
+            Debug.Log("lookAround turned off");
         }
     }
 
-    void OnTestTMPro(InputValue input)
+    void OnInteract(InputValue input)
     {
         if (input.isPressed)
         {
-            canvasManager.UpdateTMPro();
+            if (playerInteractables.interactable != null)
+            {
+                playerInteractables.interactable.Interact();
+            }
         }
-       
     }
 
     // Incase the shadow enters the light after initial check...

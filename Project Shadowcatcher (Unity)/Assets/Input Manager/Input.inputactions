@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "9f133daf-3f34-4481-bff6-417a411c0b7c",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "7dfb4b20-b55f-44d3-b736-ac3e498d2692",
@@ -33,27 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TestSlider",
-                    "type": "Button",
-                    "id": "99d4ee50-b355-4a0c-9507-4b04ff82c55e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "TestTMPro",
-                    "type": "Button",
-                    "id": "c1bb40f3-4706-43b4-9e98-fb9a51f81f35",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ViewShadowRealm",
                     "type": "Button",
                     "id": "98f5058a-0199-4699-a664-57900992a967",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LookAround",
+                    "type": "Button",
+                    "id": "28d80803-76ba-448c-9436-ca8ee35f6c86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "35ab578a-c618-4716-8655-2a6390abe49d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -162,39 +153,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e5f5442-8668-4b27-a940-df99bad7e831",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -250,34 +208,34 @@
                 },
                 {
                     "name": "",
-                    "id": "b3334ac1-9134-41ce-8f74-40c802674b7f",
-                    "path": "<Keyboard>/minus",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestSlider",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2f3528b8-f19a-4989-ac4a-37aa032a8c22",
-                    "path": "<Keyboard>/equals",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestTMPro",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "863b65b4-de11-4da5-a42c-9721fb0664b6",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ViewShadowRealm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eca04732-782a-450a-a5d7-dfb2cac1d03c",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookAround",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "765983fb-261d-467a-94cb-d4bf9fa3f435",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -66,7 +66,7 @@ public class FXManager : MonoBehaviour
       audioSource.clip = skate1;
       audioSource.loop = true;
       audioSource.Play();
-      Debug.Log("Skate.Audio");
+      //Debug.Log("Skate.Audio");
     }
 
          public void StopSkate()
@@ -95,6 +95,7 @@ public class FXManager : MonoBehaviour
         audioSource.clip = shadowAttach;
         audioSource.Play();
         //Debug.Log("ShadowAttach");
+<<<<<<< Updated upstream
     }
         
     public void ShadowOver()
@@ -102,6 +103,8 @@ public class FXManager : MonoBehaviour
         audioSource.clip = shadowMoveUnder;
         audioSource.Play();
         //Debug.Log("ShadowOver");
+=======
+>>>>>>> Stashed changes
     }
 
     public void ShadowUnder()
