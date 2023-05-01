@@ -13,6 +13,7 @@ public class TimeManager : MonoBehaviour
 
     GameManager gameManager;
     FXManager fxManager;
+    MusicManager musicManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,9 @@ public class TimeManager : MonoBehaviour
         fxManager = FindObjectOfType<FXManager>();
         gameManager = FindObjectOfType<GameManager>();
         StartCoroutine(StartTimer());
+        musicManager = FindObjectOfType<MusicManager>();
+
+        
     }
 
     IEnumerator StartTimer()
@@ -47,6 +51,7 @@ public class TimeManager : MonoBehaviour
             UpdateHoursUI(hours);
 
             gameManager.TriggerTimeBasedEvents(hours, seconds);
+            
         }
     }
 

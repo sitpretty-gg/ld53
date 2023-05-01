@@ -4471,6 +4471,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &625020185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625020187}
+  - component: {fileID: 625020186}
+  m_Layer: 0
+  m_Name: FXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &625020186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625020185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55abccddac56404297b41e1f097f7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Footsteps: {fileID: 0}
+  skate1: {fileID: 0}
+  ShadowSight: {fileID: 0}
+  shadowSightOn: {fileID: 0}
+  shadowSightOff: {fileID: 0}
+  Shadow: {fileID: 0}
+  shadowAttach: {fileID: 0}
+  shadowMoveUnder: {fileID: 0}
+  shadowMoveOver: {fileID: 0}
+  Clock: {fileID: 0}
+  batteryDrain: {fileID: 0}
+  clockTick: {fileID: 0}
+  clockTickBell: {fileID: 0}
+--- !u!4 &625020187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625020185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.3368168, y: 3.7374544, z: -0.041149203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &628921040
 Sprite:
   m_ObjectHideFlags: 0
@@ -5862,7 +5919,7 @@ GameObject:
   - component: {fileID: 954410491}
   - component: {fileID: 954410490}
   m_Layer: 0
-  m_Name: AudioManagers
+  m_Name: MusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class WorldBlankState 
 {
-
+    public string MusicState;
     public abstract void EnterState(WorldStateManager context);
 
 }

@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 input = new Vector2();
     [SerializeField] float moveSpeed;
+    public bool stepsCanPlay;
 
     // Start is called before the first frame update
     void Start()
@@ -49,15 +50,19 @@ public class PlayerMovement : MonoBehaviour
         if (input.x != 0 || input.y != 0)
         {
             SetSkating(true);
+            stepsCanPlay = true;
             // DANIEL: Movement sounds to trigger here
+            //fxManager.skateCoroutine = fxManager.StartCoroutine(fxManager.LoopSkate());
             fxManager.PlaySkate();
         }
 
         else
         {
             SetSkating(false);
+            stepsCanPlay = false;
             // DANIEL: Movement sounds to turn off here
-            fxManager.StopSkate();
+            //fxManager.StopSkate(AudioSource instance)
+            //fxManager.StopCoroutine(fxManager.LoopSkate());
         }
 
         if (input.x < 0)

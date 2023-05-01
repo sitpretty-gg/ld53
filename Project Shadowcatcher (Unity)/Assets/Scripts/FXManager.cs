@@ -6,15 +6,13 @@ using UnityEngine.Audio;
 public class FXManager : MonoBehaviour
 {
     public static FXManager instance;
-        
-    private AudioSource audioSource
-        ;
-   
+
+    private AudioSource audioSource;
 
     public AudioMixerGroup Footsteps;
     public AudioClip skate1;
-        
-    public AudioMixer ShadowSight;
+
+    public AudioMixerGroup ShadowSight;
     public AudioClip shadowSightOn;
     public AudioClip shadowSightOff;
 
@@ -22,16 +20,23 @@ public class FXManager : MonoBehaviour
     public AudioClip shadowAttach;
     public AudioClip shadowMoveUnder;
     public AudioClip shadowMoveOver;
-    
+
     public AudioMixerGroup Clock;
     public AudioClip batteryDrain;
     public AudioClip clockTick;
     public AudioClip clockTickBell;
-          
+
+    public AudioSource audioSource1;
+    public Coroutine skateCoroutine = null;
+    PlayerMovement playerMovement;
+
+    private bool footstepIsPlaying = false;
+    private float lastFootstepPlayed = -0.5f;
+    private float footstepSpace = 0.5f;
 
     private void Awake()
     {
-       if (instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -44,7 +49,8 @@ public class FXManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     //Get Clips
@@ -56,7 +62,11 @@ public class FXManager : MonoBehaviour
     }
 
     //audio utilites
-              
+    private void Update()
+    {
+            PlaySkate();
+        
+    }
     IEnumerator WaitUntilClipEnd()
     {
         audioSource.loop = false;
@@ -71,49 +81,65 @@ public class FXManager : MonoBehaviour
     }
 
 
-   
-    
+
+
     public void PlaySkate()
     {
-        audioSource.clip = skate1;
-        audioSource.loop = true;
-        audioSource.Play();
-        audioSource.outputAudioMixerGroup = Footsteps;
-      
-       
-      //Debug.Log("Skate.Audio");
-    }
-        public void StopSkate()
+    if (Time.time >= lastFootstepPlayed + footstepSpace && playerMovement.stepsCanPlay)
     {
-       audioSource.clip = skate1;
-       StartCoroutine(WaitUntilClipEnd());
-       audioSource.Stop();
-
+        lastFootstepPlayed = Time.time;
+        audioSource.outputAudioMixerGroup = Footsteps;
+        audioSource.PlayOneShot(skate1);
+        footstepIsPlaying = true;
+    }
     }
 
-  
+    public IEnumerator LoopSkate()
+    {
+
+
+        while (playerMovement.stepsCanPlay)
+        {
+            if (footstepIsPlaying == false)
+            {
+                PlaySkate();
+                yield return new WaitForSecondsRealtime(0.5f);
+                footstepIsPlaying = false;
+            }
+        }
+        
+    }
+    //public void StopSkate()
+   // {
+     //   instance.clip = skate1;
+       // StartCoroutine(WaitUntilClipEnd());
+        //instance.Stop();
+
+    //}
+
+
 
     public void ShadowSightON()
     {
-        audioSource.clip = shadowSightOn;
-        audioSource.Play();
-        audioSource.outputAudioMixerGroup = Shadow;
+        audioSource.outputAudioMixerGroup = ShadowSight;
+        audioSource.PlayOneShot(shadowSightOn);
         //Debug.Log("ShadowON");
     }
 
     public void ShadowSightOFF()
     {
-        audioSource.clip = shadowSightOff;
-        audioSource.Play();
+        audioSource.outputAudioMixerGroup = ShadowSight;
+        audioSource.PlayOneShot(shadowSightOff);
+        
         //Debug.Log("ShadowOFF");
     }
     public void PlayShadowAttach()
     {
-        audioSource.clip = shadowAttach;
-        audioSource.Play();
-        Debug.Log("AShadowAttaches");
+        audioSource.outputAudioMixerGroup = Shadow;
+        audioSource.PlayOneShot(shadowAttach);
+                Debug.Log("AShadowAttaches");
     }
-        
+
     public void PlayShadowOver()
     {
         audioSource.clip = shadowMoveUnder;
@@ -123,9 +149,9 @@ public class FXManager : MonoBehaviour
 
     public void PlayShadowUnder()
     {
-        
-        audioSource.clip = shadowMoveOver;
-        audioSource.Play();
+
+        audioSource.outputAudioMixerGroup = Shadow;
+        audioSource.PlayOneShot(shadowMoveUnder);
         Debug.Log("ShadowUnder");
     }
 
@@ -134,8 +160,8 @@ public class FXManager : MonoBehaviour
     //
     public void PlayBatteryDraining()
     {
-       // audioSource.clip = batteryDrain;
-       //audioSource.Play();
+        // audioSource.clip = batteryDrain;
+        //audioSource.Play();
         //Debug.Log("batteryDrain");
     }
 
@@ -145,7 +171,7 @@ public class FXManager : MonoBehaviour
         audioSource.Play();
         audioSource.outputAudioMixerGroup = Clock;
     }
-        public void PlayClockTickBell()
+    public void PlayClockTickBell()
     {
         audioSource.clip = clockTickBell;
         audioSource.Play();

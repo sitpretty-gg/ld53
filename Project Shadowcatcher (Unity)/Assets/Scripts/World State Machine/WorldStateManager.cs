@@ -9,6 +9,7 @@ public class WorldStateManager : MonoBehaviour
     WorldBlankState currentState;
     public RealWorldState realWorldState = new RealWorldState();
     public ShadowWorldState shadowWorldState = new ShadowWorldState();
+    MusicManager musicManager;
 
     ShadowStateManager[] shadows;
 
@@ -16,6 +17,7 @@ public class WorldStateManager : MonoBehaviour
     void Start()
     {
         shadows = FindObjectsOfType<ShadowStateManager>();
+        musicManager = FindObjectOfType<MusicManager>();
         currentState = realWorldState;
         realWorldState.EnterState(this);
     }
@@ -31,6 +33,7 @@ public class WorldStateManager : MonoBehaviour
     {
         currentState = newState;
         newState.EnterState(this);
+        musicManager.setmusicstate(newState.MusicState);
     }
 
     public IEnumerator ShadowWorldTimer()
